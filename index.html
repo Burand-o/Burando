@@ -2,23 +2,29 @@
 <html>
 <head>
   <script>
-    // قراءة brandId من query string
     const params = new URLSearchParams(window.location.search);
     const brandId = params.get('brandId');
-    
+    const productId = params.get('productId');
+
     if (brandId) {
-      // محاولة فتح التطبيق
       window.location.href = `burando://brand/${brandId}`;
-      
-      // إذا لم ينجح (التطبيق غير مثبت)
       setTimeout(() => {
         document.getElementById('msg').style.display = 'block';
       }, 2500);
+    } else if (productId) {
+      window.location.href = `burando://product/${productId}`;
+      setTimeout(() => {
+        document.getElementById('msg').style.display = 'block';
+      }, 2500);
+    } else {
+      document.getElementById('msg').style.display = 'block';
     }
   </script>
 </head>
 <body>
-  <p>App Opening</p>
-  <p id="msg" style="display:none">App Opening</p>
+  <p>App Opening...</p>
+  <p id="msg" style="display:none">
+    Please install the Burando app to open this link.
+  </p>
 </body>
 </html>
