@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script>
+    // قراءة brandId من query string
+    const params = new URLSearchParams(window.location.search);
+    const brandId = params.get('brandId');
+    
+    if (brandId) {
+      // محاولة فتح التطبيق
+      window.location.href = `burando://brand/${brandId}`;
+      
+      // إذا لم ينجح (التطبيق غير مثبت)
+      setTimeout(() => {
+        document.getElementById('msg').style.display = 'block';
+      }, 2500);
+    }
+  </script>
+</head>
+<body>
+  <p>App Opening</p>
+  <p id="msg" style="display:none">App Opening</p>
+</body>
+</html>
