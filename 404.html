@@ -8,9 +8,21 @@
   
   if (path.includes('/brand/')) {
     window.location.href = "burando://brand/" + id;
+  } else if (path.includes('/product/')) {
+    window.location.href = "burando://product/" + id;
+  } else if (path.includes('/share/product/')) {
+    window.location.href = "burando://product/" + id;
   }
+
+  setTimeout(function() {
+    document.getElementById('msg').style.display = 'block';
+  }, 2500);
 </script>
 </head>
 <body>
-  <p>App Opening</p>
+  <p>App Opening...</p>
+  <p id="msg" style="display:none">
+    Please install the Burando app to open this link.
+  </p>
 </body>
+</html>
