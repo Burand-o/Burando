@@ -7,19 +7,31 @@
     var path = params.get('path') || window.location.pathname;
     var segments = path.split('/').filter(Boolean);
 
-    var deepLink = null;
+    var type = null;
+    var id = null;
 
     var productIndex = segments.indexOf('product');
     var brandIndex   = segments.indexOf('brand');
 
     if (productIndex !== -1 && segments[productIndex + 1]) {
-      deepLink = 'burando://product/' + segments[productIndex + 1];
+      type = 'product';
+      id = segments[productIndex + 1];
     } else if (brandIndex !== -1 && segments[brandIndex + 1]) {
-      deepLink = 'burando://brand/' + segments[brandIndex + 1];
+      type = 'brand';
+      id = segments[brandIndex + 1];
     }
 
-    if (deepLink) {
-      window.location.href = deepLink;
+    if (type && id) {
+      var customScheme = 'burando://' + type + '/' + id;
+      var intentUrl = 'intent://' + type + '/' + id
+        + '#Intent;scheme=burando;package=com.example.burando;end';
+
+      var ua = navigator.userAgent || '';
+      if (/android/i.test(ua)) {
+        window.location.href = intentUrl;
+      } else {
+        window.location.href = customScheme;
+      }
     }
 
     setTimeout(function () {
