@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script>
-  var path = window.location.pathname;
-  var segments = path.split('/');
-  var id = segments[segments.length - 1];
-  
-  if (path.includes('/brand/')) {
-    window.location.href = "burando://brand/" + id;
-  } else if (path.includes('/product/')) {
-    window.location.href = "burando://product/" + id;
-  } else if (path.includes('/share/product/')) {
-    window.location.href = "burando://product/" + id;
-  }
-
-  setTimeout(function() {
-    document.getElementById('msg').style.display = 'block';
-  }, 2500);
-</script>
+  <meta charset="UTF-8">
+  <script>
+    var path = window.location.pathname;
+    var query = window.location.search;
+    window.location.replace('/Burando/?path=' + encodeURIComponent(path + query));
+  </script>
 </head>
-<body>
-  <p>App Opening...</p>
-  <p id="msg" style="display:none">
-    Please install the Burando app to open this link.
-  </p>
-</body>
+<body></body>
 </html>
