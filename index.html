@@ -12,6 +12,7 @@
 
     var productIndex = segments.indexOf('product');
     var brandIndex   = segments.indexOf('brand');
+    var videoIndex   = segments.indexOf('video');
 
     if (productIndex !== -1 && segments[productIndex + 1]) {
       type = 'product';
@@ -19,6 +20,9 @@
     } else if (brandIndex !== -1 && segments[brandIndex + 1]) {
       type = 'brand';
       id = segments[brandIndex + 1];
+    } else if (videoIndex !== -1 && segments[videoIndex + 1]) {
+      type = 'video';
+      id = segments[videoIndex + 1];
     }
 
     if (type && id) {
